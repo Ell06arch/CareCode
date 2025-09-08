@@ -31,24 +31,33 @@ After cleaning, **14 columns with >50% missingness were removed**, and the remai
 
 ## **3. How We Approached the Problem**
 
-### 1. **Feature Engineering & Discovery**
+### 3.1. **Domain-Wise Feature Screening & Reduction**
+To handle multicollinearity and redundancy, I applied a structured, domain-based feature reduction pipeline:
+- **Numeric features**: Screened using **Variance Inflation Factor (VIF)** to remove highly correlated variables within each domain.
+- **Binary features**: Grouped by domain and combined into **PCA-based composites** to capture shared signal while reducing dimensionality.
+- This process reduced the initial feature set to **61 non-redundant features**.
+
+### 3.2. **Feature Engineering & Discovery**
 - Conducted deep EDA to uncover patterns in resilience and risk.
 - Engineered **clinically meaningful features** like:
   - `high_stress_home`: Low parenting preparedness + poor marital quality
   - `treatment_effective`: Composite of key interaction effects
-  - `recover_perm`: Indicator of full recovery from past depression
 
-### 2. **Feature Selection**
-- Used a **dual-path strategy**:
-  - **LassoCV**: For automatic sparsity
+### 3.3. **Feature Selection**
+- Applied a **dual-path strategy** on the 61 reduced features:
+  - **LassoCV**: For automatic sparsity and linear feature selection
   - **RFECV with Ridge**: For stable, model-driven selection
-- Final set: **33 features** — a balance of signal, interpretability, and generalizability
+- This yielded:
+  - **8 features** in the intersection (conservative set)
+  - **33 features** in the union (comprehensive set)
+- A classification experiment (predicting depression severity) revealed that the **33-feature set significantly outperformed the 8-feature model**, justifying its use for richer signal capture.
+- This also led to the adoption of **Stratified K-Fold CV** (on binned `hamd_6m`) to ensure balanced representation of depression severity levels across folds.
 
-### 3. **Modeling**
+### 3.4. **Modeling**
 - Tested **XGBoost, LightGBM, and Lasso** on the same CV framework
 - Used **Stratified K-Fold CV** (5 splits) on binned `hamd_6m` to ensure balanced representation of depression severity
 
-### 4. **Evaluation**
+### 3.5. **Evaluation**
 - Primary metrics: **R²** (explained variance), **RMSE** (prediction error)
 - Secondary: **MAE, MedAE** for clinical interpretability
 
@@ -103,8 +112,9 @@ Rather than a black box, this is a **transparent decision-support tool** that ca
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/ppd-prediction.git
+   git clone https://github.com/your-username/ppd-prediction.git  
    cd ppd-prediction
+   ```
 2. Install the dependencies:
 
    ```bash
