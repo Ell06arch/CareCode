@@ -1,36 +1,40 @@
 # **Predicting Postpartum Depression Risk with Machine Learning**
 *A practical look at using data to support early maternal mental health care*
 
----
-
-## **Why I Took On This Challenge**
 Postpartum depression (PPD) affects up to 1 in 5 mothers. In many communities, screening is rare, and stigma delays help. I set out to explore a simple question:
 > *Can accessible, non-invasive data flag mothers at risk six months after childbirth?*
 
 The aim isn’t to replace clinicians, but to help them focus where support is most urgently needed.
-**Bottom line?** The final model explained **67% of the variance in PPD outcomes** — a promising step for early intervention.
+The final model explained **67% of the variance in PPD outcomes** — a promising step toward early intervention. 
+*This project was developed as part of the **SheCode Africa AI/ML Challenge (Aug–Sep 2025)**.*
 
 ---
 
 ## **Where the Data Came From**
-This project used a longitudinal maternal health study with **1,203 participants**. I chose to predict the **6-month HAM-D score** (`hamd_6m`) because it was both clinically meaningful and the most complete.
-After removing **385 entries missing this target**, I worked with **818 participants**. The dataset included:
+The dataset was provided as part of the competition — a longitudinal maternal health study with **1,203 participants**. The goal was to predict the **6-month HAM-D score** (`hamd_6m`), chosen for its clinical relevance and data completeness.
+
+### **Schema Alignment**
+A schema was provided describing what each column represented. I cross-checked all dataset columns against this schema to ensure interpretability.
+* After this step, the feature set dropped from **394 (including the target)** to **236 (including the target)**.
+* Columns with over 50% missingness (14 in total) were then removed, leaving **222 (including the target)**.
+
+After removing **385 entries missing the target**, I worked with **818 participants**. Final retained domains included:
 * Mental health history
 * Social and family support
 * Economic status
 * Treatment engagement
 
-Columns with **>50% missingness (14 total)** were dropped, and the remaining data was cleaned for modeling.
-
 ---
 
 ## **How I Broke Down the Problem**
-### **Screening and Reducing Features**
-Starting with **311 columns**, I cut redundancy within each domain:
-* **Numeric features** – filtered using Variance Inflation Factor (VIF) to remove multicollinearity
-* **Binary features** – combined within domains using PCA composites to retain signal
+### **Reducing and Screening Features**
+Starting with 221 usable features (excluding the target), I applied a series of steps:
+* Ran domain-level VIF to reduce collinearity among numeric features
+* Created PCA composites from binary groups within the same domain
+* Preserved relevant interaction terms
+* Converted certain binary variables for consistency
 
-This produced **61 core features** — a more manageable set.
+After deduplication, this left **103 unique features**. A final global VIF check was then applied to the combined set, which further reduced the count to **61 core features** — a more manageable foundation for selection and modeling.
 
 ### **Selecting the Most Useful Features**
 From those 61, I used two complementary paths:
@@ -80,6 +84,7 @@ XGBoost gave the best results:
 
 ## **Why This Work Matters**
 PPD isn’t just about screening — it’s about **timely, informed care**.
+
 This model highlights:
 * **Resilience factors** (like recovery history) as major protectors
 * **Social and treatment interactions** as levers for change
@@ -101,22 +106,18 @@ It’s transparent enough to:
 
 ## **How to Explore the Project**
 1. Clone the repository:
-
    ```bash
    git clone https://github.com/your-username/ppd-prediction.git
    cd ppd-prediction
    ```
 2. Install dependencies:
-
    ```bash
    pip install -r requirements.txt
    ```
 3. Open the notebook:
-
    ```bash
    jupyter notebook notebooks/carecode.ipynb
    ```
-
 ---
 
 ## **Key Takeaway**
@@ -125,4 +126,4 @@ With careful feature work and ensemble modeling, it’s possible to flag postpar
 ---
 
 ## **Acknowledgments**
-Developed as part of the **SheCode Africa AI/ML Track** challenge on maternal mental health.
+Developed as part of the **SheCode Africa AI/ML Challenge (August–September 2025)** on maternal mental health.
