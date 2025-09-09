@@ -3,7 +3,9 @@ Postpartum depression (PPD) affects about 1 in 7 mothers globally, yet in many s
 > *Can routinely collected maternal health and social factors predict who is likely to develop PPD six months after childbirth?*
 
 This work looks at how early patterns in mothers' health and environment could guide timely follow-up and support not to replace care but to make it more proactive.
+
 The model captured about **67% of the key differences between mothers who did and didn’t develop PPD**, showing it can meaningfully flag risk early based on the data available.
+
 *This project was developed as part of the **SheCode Africa AI/ML Challenge (Aug–Sep 2025)**.*
 
 ---
