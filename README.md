@@ -1,24 +1,22 @@
 # **Predicting Postpartum Depression Risk with Machine Learning**
-*A practical look at using data to support early maternal mental health care*
+Postpartum depression (PPD) affects about 1 in 7 mothers globally, yet in many settings, fewer than half of cases are detected early due to limited screening and persistent stigma. I set out to explore a simple question: I set out to explore a simple question:
+> *Can routinely collected maternal health and social factors predict who is likely to develop PPD six months after childbirth?*
 
-Postpartum depression (PPD) affects up to 1 in 5 mothers. In many communities, screening is rare, and stigma delays help. I set out to explore a simple question:
-> *Can accessible, non-invasive data flag mothers at risk six months after childbirth?*
-
-The aim isn’t to replace clinicians, but to help them focus where support is most urgently needed.
-The final model explained **67% of the variance in PPD outcomes** — a promising step toward early intervention. 
+This work looks at how early patterns in mothers' health and environment could guide timely follow-up and support not to replace care but to make it more proactive.
+The model captured about **67% of the key differences between mothers who did and didn’t develop PPD**, showing it can meaningfully flag risk early based on the data available.
 *This project was developed as part of the **SheCode Africa AI/ML Challenge (Aug–Sep 2025)**.*
 
 ---
 
 ## **Where the Data Came From**
-The dataset was provided as part of the competition — a longitudinal maternal health study with **1,203 participants**. The goal was to predict the **6-month HAM-D score** (`hamd_6m`), chosen for its clinical relevance and data completeness.
+The dataset was provided as part of the competition — a longitudinal maternal health study with **1,203 participants**. The task was framed as a **regression problem**, so I used the **6-month HAM-D score** (`hamd_6m`) as the target because it’s a standard measure of depression severity and had the most complete data for this period.
 
 ### **Schema Alignment**
 A schema was provided describing what each column represented. I cross-checked all dataset columns against this schema to ensure interpretability.
 * After this step, the feature set dropped from **394 (including the target)** to **236 (including the target)**.
 * Columns with over 50% missingness (14 in total) were then removed, leaving **222 (including the target)**.
 
-After removing **385 entries missing the target**, I worked with **818 participants**. Final retained domains included:
+After removing **385 entries missing the target**, I worked with **818 participants**. Final retained domains included, but were not limited to:
 * Mental health history
 * Social and family support
 * Economic status
