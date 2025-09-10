@@ -1,5 +1,6 @@
 # **Predicting Postpartum Depression Risk with Machine Learning**
-Postpartum depression (PPD) affects about 1 in 7 mothers globally, yet in many settings, fewer than half of cases are detected early due to limited screening and persistent stigma. I set out to explore a simple question: I set out to explore a simple question:
+Postpartum depression (PPD) affects about 1 in 7 mothers globally, yet in many settings, fewer than half of cases are detected early due to limited screening and persistent stigma. I set out to explore a simple question:
+
 > *Can routinely collected maternal health and social factors predict who is likely to develop PPD six months after childbirth?*
 
 This work looks at how early patterns in mothers' health and environment could guide timely follow-up and support not to replace care but to make it more proactive.
@@ -31,8 +32,9 @@ After removing **385 entries missing the target**, I worked with **818 participa
 Starting with 221 usable features (excluding the target), I applied a series of steps:
 * Ran domain-level VIF to reduce collinearity among numeric features
 * Created PCA composites from binary groups within the same domain
-* Preserved relevant interaction terms
+* Preserved relevant interaction terms (17 in total) to retain the study’s experimental design effects
 * Converted certain binary variables for consistency
+* Excluded two domains—Cognitive & Behavioral and School Education—to prevent leakage, since they reflect child outcomes that occur after the six-month window
 
 After deduplication, this left **103 unique features**. A final global VIF check was then applied to the combined set, which further reduced the count to **61 core features** — a more manageable foundation for selection and modeling.
 
