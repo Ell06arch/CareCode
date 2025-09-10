@@ -83,16 +83,15 @@ XGBoost gave the best results:
 ---
 
 ## **Why This Work Matters**
-PPD isn’t just about screening — it’s about **timely, informed care**.
+The model highlighted several patterns that can shape how postpartum depression is followed up and managed:
+* **Recovery history is a strong signal** – Mothers who had recovered well from past depression were far less likely to develop PPD again, while those with a history of chronic vulnerability needed closer monitoring.
+* **Early discussions with care providers matter** – When conversations happened early, risk was often flagged sooner and support could start earlier.
+* **Treatment works better with stability** – Its impact was stronger when employment and household stability were already in place.
 
-This model highlights:
-* **Resilience factors** (like recovery history) as major protectors
-* **Social and treatment interactions** as levers for change
-
-It’s transparent enough to:
-* Guide follow-ups
-* Shape targeted interventions
-* Support maternal health planning in resource-limited settings
+These signals point to areas where follow-up can be more focused:
+* Identify mothers with a history of recurring depression for early check-ins.
+* Encourage early conversations during routine care.
+* Pair treatment plans with social and economic support when possible.
 
 ---
 
